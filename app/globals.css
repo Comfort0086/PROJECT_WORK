@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+@theme {
+  /* Brand — deep green (hero, primary actions, links) */
+  --color-brand-50: #ecfdf3;
+  --color-brand-100: #d1fadf;
+  --color-brand-200: #a7f3c5;
+  --color-brand-400: #34c77b;
+  --color-brand-500: #1f9d57;
+  --color-brand-600: #167a44;
+  --color-brand-700: #135e36;
+  --color-brand-800: #11462a;
+  --color-brand-900: #0c3220;
+
+  /* Accent — warm orange (CTAs, highlights) */
+  --color-accent-400: #f5a623;
+  --color-accent-500: #e8920c;
+  --color-accent-600: #cf7d08;
+
+  /* Neutral surfaces */
+  --color-surface: #f7f8f7;
+
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: #ffffff;
+  color: #14201a;
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
