@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { signIn, getSession } from "next-auth/react";
 import { roleHome } from "@/lib/roleHome";
+import PasswordField from "@/components/PasswordField";
 
 function LoginForm() {
   const router = useRouter();
@@ -63,15 +64,7 @@ function LoginForm() {
               className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none transition focus:border-brand-500 focus:ring-2 focus:ring-brand-100"
             />
           </label>
-          <label className="block">
-            <span className="mb-1 block text-sm font-medium text-gray-700">Password</span>
-            <input
-              name="password"
-              type="password"
-              required
-              className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none transition focus:border-brand-500 focus:ring-2 focus:ring-brand-100"
-            />
-          </label>
+          <PasswordField label="Password" name="password" required />
 
           <button
             type="submit"

@@ -24,6 +24,13 @@ export default async function OpportunityDetailPage({
   const role = session?.user?.role;
   const applied =
     role === "student" ? await hasApplied(session!.user.id, item.id) : false;
+  const startDate = item.startDate
+    ? new Date(item.startDate).toLocaleDateString("en-GB", {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+      })
+    : null;
   const deadline = item.deadline
     ? new Date(item.deadline).toLocaleDateString("en-GB", {
         day: "numeric",
@@ -51,10 +58,11 @@ export default async function OpportunityDetailPage({
           </h1>
           <p className="mt-1 text-gray-500">{item.company.name}</p>
 
-          <dl className="mt-6 grid grid-cols-2 gap-4 text-sm sm:grid-cols-4">
+          <dl className="mt-6 grid grid-cols-2 gap-4 text-sm sm:grid-cols-3 lg:grid-cols-5">
             <Meta label="Location" value={item.location || "—"} />
             <Meta label="Duration" value={item.duration || "—"} />
             <Meta label="Slots" value={String(item.slotsAvailable)} />
+            <Meta label="Start date" value={startDate || "—"} />
             <Meta label="Deadline" value={deadline || "Open"} />
           </dl>
 

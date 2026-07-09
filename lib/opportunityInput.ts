@@ -9,6 +9,7 @@ export interface OpportunityInput {
   slotsAvailable?: number;
   skillsRequired?: string[];
   status?: "open" | "closed";
+  startDate?: Date | null;
   deadline?: Date | null;
 }
 
@@ -67,6 +68,17 @@ export function parseOpportunityInput(
     if (body.status !== "open" && body.status !== "closed")
       return { ok: false, error: "Invalid status." };
     value.status = body.status;
+  }
+
+  if (body.startDate !== undefined) {
+    if (!body.startDate) {
+      value.startDate = null;
+    } else {
+      const d = new Date(String(body.startDate));
+      if (isNaN(d.getTime()))
+        return { ok: false, error: "Invalid start date." };
+      value.startDate = d;
+    }
   }
 
   if (body.deadline !== undefined) {

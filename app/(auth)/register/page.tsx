@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import { roleHome } from "@/lib/roleHome";
+import PasswordField from "@/components/PasswordField";
 
 type Role = "student" | "company";
 
@@ -21,6 +22,13 @@ export default function RegisterPage() {
 
     const form = new FormData(e.currentTarget);
     const payload = Object.fromEntries(form.entries());
+
+    if (payload.password !== payload.confirmPassword) {
+      setError("Passwords do not match.");
+      setLoading(false);
+      return;
+    }
+    delete payload.confirmPassword;
     payload.role = role;
 
     try {
@@ -108,12 +116,16 @@ export default function RegisterPage() {
               required
             />
             <Field label="Email" name="email" type="email" required />
-            <Field
+            <PasswordField
               label="Password"
               name="password"
-              type="password"
               required
               hint="At least 6 characters."
+            />
+            <PasswordField
+              label="Confirm password"
+              name="confirmPassword"
+              required
             />
 
             {role === "student" ? (

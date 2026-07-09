@@ -51,6 +51,16 @@ export default function OpportunityCard({
             {item.duration}
           </p>
         )}
+        {item.startDate && (
+          <p className="flex items-center gap-1.5">
+            <span aria-hidden>📅</span>
+            Starts {new Date(item.startDate).toLocaleDateString("en-GB", {
+              day: "numeric",
+              month: "short",
+              year: "numeric",
+            })}
+          </p>
+        )}
       </div>
 
       {item.skillsRequired.length > 0 && (
