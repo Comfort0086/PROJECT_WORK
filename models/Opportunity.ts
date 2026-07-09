@@ -12,6 +12,7 @@ export interface IOpportunity {
   slotsAvailable?: number;
   skillsRequired: string[];
   status: OpportunityStatus;
+  startDate?: Date;
   deadline?: Date;
   createdAt: Date;
   updatedAt: Date;
@@ -32,6 +33,7 @@ const OpportunitySchema = new Schema<IOpportunity>(
     slotsAvailable: { type: Number, min: 1, default: 1 },
     skillsRequired: { type: [String], default: [] },
     status: { type: String, enum: ["open", "closed"], default: "open" },
+    startDate: { type: Date },
     deadline: { type: Date },
   },
   { timestamps: true }

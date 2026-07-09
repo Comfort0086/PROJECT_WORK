@@ -12,6 +12,7 @@ export interface OpportunityFormValues {
   slotsAvailable: number;
   skillsRequired: string[];
   status: "open" | "closed";
+  startDate: string | null; // ISO or null
   deadline: string | null; // ISO or null
 }
 
@@ -40,6 +41,7 @@ export default function OpportunityForm({
       slotsAvailable: form.get("slotsAvailable"),
       skillsRequired: String(form.get("skillsRequired") ?? ""),
       status: form.get("status"),
+      startDate: form.get("startDate") || null,
       deadline: form.get("deadline") || null,
     };
 
@@ -91,6 +93,9 @@ export default function OpportunityForm({
     }
   }
 
+  const startDateValue = initial?.startDate
+    ? initial.startDate.slice(0, 10)
+    : "";
   const deadlineValue = initial?.deadline
     ? initial.deadline.slice(0, 10)
     : "";
@@ -123,13 +128,20 @@ export default function OpportunityForm({
         <Field label="Duration" name="duration" placeholder="e.g. 6 Months" defaultValue={initial?.duration} />
       </div>
 
+      <Field
+        label="Slots available"
+        name="slotsAvailable"
+        type="number"
+        min={1}
+        defaultValue={String(initial?.slotsAvailable ?? 1)}
+      />
+
       <div className="grid grid-cols-2 gap-4">
         <Field
-          label="Slots available"
-          name="slotsAvailable"
-          type="number"
-          min={1}
-          defaultValue={String(initial?.slotsAvailable ?? 1)}
+          label="Start date"
+          name="startDate"
+          type="date"
+          defaultValue={startDateValue}
         />
         <Field
           label="Application deadline"

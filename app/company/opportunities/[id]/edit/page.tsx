@@ -41,6 +41,7 @@ export default async function EditOpportunityPage({
             slotsAvailable: opp.slotsAvailable,
             skillsRequired: opp.skillsRequired,
             status: opp.status,
+            startDate: opp.startDate,
             deadline: opp.deadline,
           }}
         />

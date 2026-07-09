@@ -43,9 +43,10 @@ export async function POST(req: Request) {
     }
 
     await connectDB();
-    const { deadline, ...rest } = parsed.value;
+    const { startDate, deadline, ...rest } = parsed.value;
     const created = await Opportunity.create({
       ...rest,
+      ...(startDate ? { startDate } : {}),
       ...(deadline ? { deadline } : {}),
       companyId: session.user.id,
       status: parsed.value.status ?? "open",

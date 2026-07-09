@@ -11,6 +11,7 @@ export interface OpportunityListItem {
   slotsAvailable: number;
   skillsRequired: string[];
   status: "open" | "closed";
+  startDate: string | null;
   deadline: string | null;
   createdAt: string;
   company: { id: string; name: string; industry: string };
@@ -63,6 +64,7 @@ export async function getOpportunities(
       slotsAvailable: d.slotsAvailable ?? 1,
       skillsRequired: d.skillsRequired ?? [],
       status: d.status,
+      startDate: d.startDate ? new Date(d.startDate).toISOString() : null,
       deadline: d.deadline ? new Date(d.deadline).toISOString() : null,
       createdAt: new Date(d.createdAt).toISOString(),
       company: {
@@ -104,6 +106,7 @@ export async function getOpportunityById(
     slotsAvailable: d.slotsAvailable ?? 1,
     skillsRequired: d.skillsRequired ?? [],
     status: d.status,
+    startDate: d.startDate ? new Date(d.startDate).toISOString() : null,
     deadline: d.deadline ? new Date(d.deadline).toISOString() : null,
     createdAt: new Date(d.createdAt).toISOString(),
     company: {

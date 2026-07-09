@@ -14,6 +14,7 @@ export interface CompanyOpportunity {
   status: OpportunityStatus;
   skillsRequired: string[];
   description: string;
+  startDate: string | null;
   deadline: string | null;
   applicantCount: number;
   createdAt: string;
@@ -48,6 +49,7 @@ export async function getCompanyOpportunities(
     status: o.status,
     skillsRequired: o.skillsRequired ?? [],
     description: o.description,
+    startDate: o.startDate ? new Date(o.startDate).toISOString() : null,
     deadline: o.deadline ? new Date(o.deadline).toISOString() : null,
     applicantCount: countMap.get(String(o._id)) ?? 0,
     createdAt: new Date(o.createdAt).toISOString(),
@@ -77,6 +79,7 @@ export async function getCompanyOpportunity(
     status: o.status,
     skillsRequired: o.skillsRequired ?? [],
     description: o.description,
+    startDate: o.startDate ? new Date(o.startDate).toISOString() : null,
     deadline: o.deadline ? new Date(o.deadline).toISOString() : null,
     applicantCount,
     createdAt: new Date(o.createdAt).toISOString(),
