@@ -12,7 +12,7 @@ export default async function HomePage() {
     <main>
       {/* Hero */}
       <section className="relative overflow-hidden bg-brand-800 text-white">
-        <div className="absolute inset-0 bg-gradient-to-br from-brand-700 to-brand-900 opacity-95" />
+        <div className="absolute inset-0 bg-linear-to-br from-brand-700 to-brand-900 opacity-95" />
         <div className="relative mx-auto max-w-4xl px-4 py-24 text-center">
           <h1 className="text-4xl font-bold leading-tight sm:text-5xl">
             Find Your Industrial Training Placement
